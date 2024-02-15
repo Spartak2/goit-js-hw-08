@@ -90,15 +90,15 @@ gallery.addEventListener('click', function(event) {
     }
 });
 
-// відкриття великого зображення при кліку
-const galleryImages = document.querySelectorAll('.gallery-image');
-galleryImages.forEach(image => {
-    image.addEventListener('click', function(event) {
-        event.preventDefault(); // відміна переходу за посиланням
-        const largeImageSrc = this.getAttribute('data-source');
-        const instance = basicLightbox.create(`
-            <img src="${largeImageSrc}" width="800" height="600">
-        `);
-        instance.show();
-    });
+
+galleryContainer.addEventListener('click', function(event) {
+  event.preventDefault();
+  const galleryImage = event.target.closest('.gallery-image');
+  if (galleryImage) {
+      const largeImageSrc = galleryImage.getAttribute('data-source');
+      const instance = basicLightbox.create(`
+          <img src="${largeImageSrc}" width="800" height="600">
+      `);
+      instance.show();
+  }
 });
